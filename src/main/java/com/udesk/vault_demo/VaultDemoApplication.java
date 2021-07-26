@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.sql.Connection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -47,6 +49,14 @@ public class VaultDemoApplication {
 		rtn.put("username", name);
 		rtn.put("password", pwd);
 		return rtn;
+	}
+
+	@RequestMapping("/users")
+	public Map Users(){
+		String sql = "Select * from users limit 1;";
+		Map result  = jdbcTemplate.queryForMap(sql);
+
+		return result;
 	}
 
 
